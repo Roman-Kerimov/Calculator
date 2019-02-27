@@ -8,8 +8,4 @@ final class CalculatorTests: XCTestCase {
         // results.
         XCTAssertEqual(Calculator().text, "Hello, World!")
     }
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
