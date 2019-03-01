@@ -155,6 +155,7 @@ struct Node {
     
     static let sqrt = Node.init(operandCounts: (0, 1), precedence: .function) {Foundation.sqrt($0.rightFirst)}
     static let cbrt = Node.init(operandCounts: (0, 1), precedence: .function) {Foundation.cbrt($0.rightFirst)}
+    static let frrt = Node.init(operandCounts: (0, 1), precedence: .function) {pow($0.rightFirst, 0.25)}
     
     static let log = Node.init(operandCounts: (0, 2), precedence: .function) {Foundation.log($0.rightSecond)/Foundation.log($0.rightFirst)}
     static let lb = Node.init(operandCounts: (0, 1), precedence: .function) {log2($0.rightFirst)}
