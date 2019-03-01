@@ -12,6 +12,10 @@ let tokens: [String: Node] = [
     "π": .pi, // GREEK SMALL LETTER PI
     "𝜋": .pi, // MATHEMATICAL ITALIC SMALL PI
     
+    "tau": .tau,
+    "τ": .tau, // GREEK SMALL LETTER TAU
+    "𝜏": .tau, // MATHEMATICAL ITALIC SMALL TAU
+    
     "e": .e,
     "𝑒": .e, // MATHEMATICAL ITALIC SMALL E
     

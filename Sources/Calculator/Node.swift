@@ -130,6 +130,7 @@ struct Node {
     }
     
     static let pi = Node.init(.pi)
+    static let tau = Node.init(.pi*2)
     static let e = Node.init(.e)
     
     static let leftRoundBracket = Node.init(operandCounts: (0, 1), precedence: .bracket) {$0.rightFirst}
