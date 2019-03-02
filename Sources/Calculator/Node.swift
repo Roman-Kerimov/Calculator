@@ -196,3 +196,21 @@ struct Node {
     }
     
 }
+
+extension Node: Equatable {
+    static func == (lhs: Node, rhs: Node) -> Bool {
+        
+        if let lhsValue = lhs.value, let rhsValue = rhs.value {
+            return lhsValue == rhsValue
+        }
+        else {
+            return lhs === rhs
+        }
+    }
+}
+
+extension Node: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return "Node<" + (tokens.filter {$0.value === self} .keys.sorted().first ?? self.value?.debugDescription ?? "nil") + ">"
+    }
+}

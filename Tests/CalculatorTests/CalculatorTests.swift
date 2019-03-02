@@ -2,10 +2,10 @@ import XCTest
 @testable import Calculator
 
 final class CalculatorTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(Calculator().text, "Hello, World!")
+    func testTokenize() {
+        
+        Calculator.default.sourceString = "expression: sin(0,25*τ) + 2"
+        Calculator.default.tokenize()
+        XCTAssertEqual(Calculator.default.leftStack, [.divide, .sin, .leftRoundBracket, .init(0.25), .multiply, .tau, .rightRoundBracket, .add, .init(2)])
     }
 }

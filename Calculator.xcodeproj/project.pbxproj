@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		961F8CDC222A00C7001214C4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F8CDB222A00C7001214C4 /* String.swift */; };
+		961F8CDE222A03FA001214C4 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F8CDD222A03FA001214C4 /* StringTests.swift */; };
 		9697947C22292A5D00ADB7D3 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9697947B22292A5D00ADB7D3 /* Tokens.swift */; };
 		OBJ_26 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Calculator.swift */; };
 		OBJ_27 /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* FloatingPoint.swift */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		961F8CDB222A00C7001214C4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		961F8CDD222A03FA001214C4 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		9697947B22292A5D00ADB7D3 /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		"Calculator::Calculator::Product" /* Calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Calculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Calculator::CalculatorTests::Product" /* CalculatorTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = CalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +99,7 @@
 			children = (
 				OBJ_14 /* CalculatorTests.swift */,
 				OBJ_15 /* NodeTests.swift */,
+				961F8CDD222A03FA001214C4 /* StringTests.swift */,
 				OBJ_16 /* XCTestManifests.swift */,
 			);
 			name = CalculatorTests;
@@ -135,6 +140,7 @@
 				OBJ_9 /* Calculator.swift */,
 				OBJ_10 /* FloatingPoint.swift */,
 				OBJ_11 /* Node.swift */,
+				961F8CDB222A00C7001214C4 /* String.swift */,
 				9697947B22292A5D00ADB7D3 /* Tokens.swift */,
 			);
 			name = Calculator;
@@ -227,6 +233,7 @@
 			files = (
 				OBJ_26 /* Calculator.swift in Sources */,
 				OBJ_27 /* FloatingPoint.swift in Sources */,
+				961F8CDC222A00C7001214C4 /* String.swift in Sources */,
 				9697947C22292A5D00ADB7D3 /* Tokens.swift in Sources */,
 				OBJ_28 /* Node.swift in Sources */,
 			);
@@ -246,6 +253,7 @@
 			files = (
 				OBJ_46 /* CalculatorTests.swift in Sources */,
 				OBJ_47 /* NodeTests.swift in Sources */,
+				961F8CDE222A03FA001214C4 /* StringTests.swift in Sources */,
 				OBJ_48 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
