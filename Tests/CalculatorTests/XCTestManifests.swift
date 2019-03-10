@@ -7,6 +7,7 @@ extension CalculatorTests {
     // to regenerate.
     static let __allTests__CalculatorTests = [
         ("testEvaluate", testEvaluate),
+        ("testExpression", testExpression),
         ("testParse", testParse),
         ("testTokenize", testTokenize),
     ]

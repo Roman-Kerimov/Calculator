@@ -101,7 +101,7 @@ final class CalculatorTests: XCTestCase {
     
     func testEvaluate() {
         func testEvaluation(expression: String, result: String) {
-            XCTAssertEqual(Calculator.default.evaluate(expressionFromString: expression), result.replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? "."))
+            XCTAssertEqual(Calculator.default.evaluate(expressionFromString: expression)?.result, result.replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? "."))
         }
         
         testEvaluation(expression: "2+2×2", result: "6")
@@ -109,5 +109,9 @@ final class CalculatorTests: XCTestCase {
         testEvaluation(expression: "100!", result: "9.332621544E157")
         testEvaluation(expression: "05+6,25", result: "11.25")
         testEvaluation(expression: "1/20!", result: "4.110317623E-19")
+    }
+    
+    func testExpression() {
+        XCTAssertEqual(Calculator.default.evaluate(expressionFromString: "expression 2 + 2")?.expression, "2 + 2")
     }
 }

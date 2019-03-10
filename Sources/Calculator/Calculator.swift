@@ -1,7 +1,7 @@
 import Foundation
 
-class Calculator {
-    static let `default` = Calculator.init()
+public class Calculator {
+    public static let `default` = Calculator.init()
     
     private init() {}
     
@@ -10,7 +10,7 @@ class Calculator {
     var rightStack = [Node].init()
     var centerStack = [Node].init()
     
-    func evaluate(expressionFromString sourceString: String) -> String? {
+    public func evaluate(expressionFromString sourceString: String) -> (expression: String, result: String)? {
         self.sourceString = sourceString
         tokenize()
         
@@ -29,14 +29,24 @@ class Calculator {
         
         let numberResult = NSNumber.init(value: Double.init(result))
         
+        let stringResult: String?
         
         if result < 1e-10 || 1e15 < result {
-            return scientificNumberFormatter.string(from: numberResult)
+            stringResult = scientificNumberFormatter.string(from: numberResult)
         }
         else {
-            return decimalNumberFormatter.string(from: numberResult)
+            stringResult =  decimalNumberFormatter.string(from: numberResult)
+        }
+        
+        if let result = stringResult {
+            return (expression, result)
+        }
+        else {
+            return nil
         }
     }
+    
+    var expression: String = .init()
 
     func tokenize() {
         var characters = sourceString
@@ -85,6 +95,8 @@ class Calculator {
             }
         }
         
+        expression = sourceString.dropFirst(characters.count).description
+        expression = expression.dropFirst(expression.prefix(while: {$0.isWhitespace}).count).description
         leftStack.reverse()
         return
     }
