@@ -36,11 +36,11 @@ public class Calculator {
         
         let stringResult: String?
         
-        if abs(result) < 1e-10 || 1e15 < abs(result) {
-            stringResult = scientificNumberFormatter.string(from: numberResult)
+        if  abs(result) == 0 || (1e-10 < abs(result) && abs(result) < 1e15)  {
+            stringResult =  decimalNumberFormatter.string(from: numberResult)
         }
         else {
-            stringResult =  decimalNumberFormatter.string(from: numberResult)
+            stringResult = scientificNumberFormatter.string(from: numberResult)
         }
         
         if let result = stringResult {
