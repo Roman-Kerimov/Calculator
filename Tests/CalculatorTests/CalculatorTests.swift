@@ -118,6 +118,7 @@ final class CalculatorTests: XCTestCase {
         testEvaluation(expression: "100!", result: "9.332621544E157")
         testEvaluation(expression: "05+6,25", result: "11.25")
         testEvaluation(expression: "1/20!", result: "4.110317623E-19")
+        testEvaluation(expression: "5−9", result: "-4")
     }
     
     func testExpression() {

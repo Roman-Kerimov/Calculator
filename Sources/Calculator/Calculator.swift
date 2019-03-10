@@ -36,7 +36,7 @@ public class Calculator {
         
         let stringResult: String?
         
-        if result < 1e-10 || 1e15 < result {
+        if abs(result) < 1e-10 || 1e15 < abs(result) {
             stringResult = scientificNumberFormatter.string(from: numberResult)
         }
         else {
