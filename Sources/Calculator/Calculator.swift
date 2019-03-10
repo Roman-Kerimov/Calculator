@@ -11,6 +11,11 @@ public class Calculator {
     var centerStack = [Node].init()
     
     public func evaluate(expressionFromString sourceString: String) -> (expression: String, result: String)? {
+        
+        leftStack = []
+        rightStack = []
+        centerStack = []
+        
         self.sourceString = sourceString
         tokenize()
         
@@ -165,15 +170,11 @@ public class Calculator {
             case (.none, .some(_), .none):
                 return centerStack.popLast()!
                 
-                
-            case (.none, _, .some(false)):
-                return rightStack.popLast()!
-                
             case (.some(false), .none, .some(false)):
                 centerStack.append(rightStack.popLast()!)
             
             case (.some(false), .none, .none):
-                centerStack.append(leftStack.popLast()!)
+                return .nil
             }
         }
     }

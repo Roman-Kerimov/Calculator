@@ -2,6 +2,13 @@ import XCTest
 @testable import Calculator
 
 final class CalculatorTests: XCTestCase {
+    
+    override func setUp() {
+        Calculator.default.leftStack = []
+        Calculator.default.rightStack = []
+        Calculator.default.centerStack = []
+    }
+    
     func testTokenize() {
         
         Calculator.default.sourceString = "expression: sin(0,25*τ) + 2"
@@ -97,6 +104,8 @@ final class CalculatorTests: XCTestCase {
         )
         
         testParsing(expression: "", result: .nil)
+        
+        testParsing(expression: "2+", result: .nil)
     }
     
     func testEvaluate() {
