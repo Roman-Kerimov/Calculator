@@ -6,6 +6,7 @@ extension CalculatorTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__CalculatorTests = [
+        ("testEvaluate", testEvaluate),
         ("testParse", testParse),
         ("testTokenize", testTokenize),
     ]

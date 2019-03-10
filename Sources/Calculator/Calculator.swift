@@ -1,3 +1,5 @@
+import Foundation
+
 class Calculator {
     static let `default` = Calculator.init()
     
@@ -7,6 +9,34 @@ class Calculator {
     var leftStack = [Node].init()
     var rightStack = [Node].init()
     var centerStack = [Node].init()
+    
+    func evaluate(expressionFromString sourceString: String) -> String? {
+        self.sourceString = sourceString
+        tokenize()
+        
+        guard let result = parse().value else {
+            return nil
+        }
+        
+        let decimalNumberFormatter = NumberFormatter.init()
+        decimalNumberFormatter.numberStyle = .decimal
+        decimalNumberFormatter.maximumFractionDigits = 10
+        
+        
+        let scientificNumberFormatter = NumberFormatter.init()
+        scientificNumberFormatter.numberStyle = .scientific
+        scientificNumberFormatter.maximumFractionDigits = 10
+        
+        let numberResult = NSNumber.init(value: Double.init(result))
+        
+        
+        if result < 1e-10 || 1e15 < result {
+            return scientificNumberFormatter.string(from: numberResult)
+        }
+        else {
+            return decimalNumberFormatter.string(from: numberResult)
+        }
+    }
 
     func tokenize() {
         var characters = sourceString
