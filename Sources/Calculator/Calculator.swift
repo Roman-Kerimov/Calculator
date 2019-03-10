@@ -16,7 +16,7 @@ class Calculator {
             let normalizedToken = token.precomposedStringWithCompatibilityMapping.lowercased().replacingOccurrences(of: ",", with: ".")
             
             let node: Node?
-            if let value = Float80.init(normalizedToken) {
+            if let value = RealNumber.init(normalizedToken) {
                 node = Node.init(value)
             }
             else {

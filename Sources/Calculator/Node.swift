@@ -57,20 +57,20 @@ struct Node {
     private struct Operands {
         var left: [Node], right: [Node]
         
-        var leftFirst: Float80 {
+        var leftFirst: RealNumber {
             return self.left.first!.value!
         }
         
-        var rightFirst: Float80 {
+        var rightFirst: RealNumber {
             return self.right.first!.value!
         }
         
-        var rightSecond: Float80 {
+        var rightSecond: RealNumber {
             return self.right[1].value!
         }
     }
     
-    private init(operandCounts: OperandCounts, precedence: Precedence, value: @escaping (Operands) -> Float80?) {
+    private init(operandCounts: OperandCounts, precedence: Precedence, value: @escaping (Operands) -> RealNumber?) {
         
         self.operandCounts = operandCounts
         self.precedence = precedence
@@ -80,11 +80,11 @@ struct Node {
         Node.lastID = self.id
     }
     
-    init(_ value: Float80) {
+    init(_ value: RealNumber) {
         self.init(operandCounts: (0, 0), precedence: .number) {_ in value}
     }
     
-    var value: Float80? {
+    var value: RealNumber? {
         
         guard (operands.left.count == operandCounts.left || ( (self === Node.add || self === Node.subtract) && operands.left.isEmpty))
         && operands.right.count == operandCounts.right else {
@@ -110,11 +110,11 @@ struct Node {
         return node
     }
     
-    func appending(leftOperand: Float80) -> Node {
+    func appending(leftOperand: RealNumber) -> Node {
         return appending(leftOperand: Node.init(leftOperand))
     }
     
-    func appending(rightOperand: Float80) -> Node {
+    func appending(rightOperand: RealNumber) -> Node {
         return appending(rightOperand: Node.init(rightOperand))
     }
     
@@ -132,7 +132,7 @@ struct Node {
     
     let precedence: Precedence
     
-    private let getValue: (_ operands: Operands) -> Float80?
+    private let getValue: (_ operands: Operands) -> RealNumber?
     
     private let id: UInt
     private static var lastID: UInt = 0
@@ -141,7 +141,7 @@ struct Node {
         return lhs.id == rhs.id
     }
     
-    static let `nil` = Node.init(operandCounts: (0, 0), precedence: .number) { (_) -> Float80? in
+    static let `nil` = Node.init(operandCounts: (0, 0), precedence: .number) { (_) -> RealNumber? in
         return nil
     }
     
@@ -195,7 +195,7 @@ struct Node {
     
     static let abs = Node.init(operandCounts: (0, 1), precedence: .function) {Swift.abs($0.rightFirst)}
     
-    static let factorial = Node.init(operandCounts: (1, 0), precedence: .factorial) { (operands) -> Float80? in
+    static let factorial = Node.init(operandCounts: (1, 0), precedence: .factorial) { (operands) -> RealNumber? in
         
         let operand = operands.leftFirst
 
@@ -207,7 +207,7 @@ struct Node {
             return 1
         }
         else {
-            return (1...Int.init(operand)).map {Float80.init($0)} .reduce(1, *)
+            return (1...Int.init(operand)).map {RealNumber.init($0)} .reduce(1, *)
         }
     }
     

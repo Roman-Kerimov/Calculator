@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		961F8CDC222A00C7001214C4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F8CDB222A00C7001214C4 /* String.swift */; };
 		961F8CDE222A03FA001214C4 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F8CDD222A03FA001214C4 /* StringTests.swift */; };
+		9623C3032234C71500C0C81B /* RealNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623C3022234C71500C0C81B /* RealNumber.swift */; };
 		9697947C22292A5D00ADB7D3 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9697947B22292A5D00ADB7D3 /* Tokens.swift */; };
 		OBJ_26 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Calculator.swift */; };
 		OBJ_27 /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* FloatingPoint.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		961F8CDB222A00C7001214C4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		961F8CDD222A03FA001214C4 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
+		9623C3022234C71500C0C81B /* RealNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealNumber.swift; sourceTree = "<group>"; };
 		9697947B22292A5D00ADB7D3 /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		"Calculator::Calculator::Product" /* Calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Calculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Calculator::CalculatorTests::Product" /* CalculatorTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = CalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				OBJ_9 /* Calculator.swift */,
 				OBJ_10 /* FloatingPoint.swift */,
 				OBJ_11 /* Node.swift */,
+				9623C3022234C71500C0C81B /* RealNumber.swift */,
 				961F8CDB222A00C7001214C4 /* String.swift */,
 				9697947B22292A5D00ADB7D3 /* Tokens.swift */,
 			);
@@ -211,6 +214,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = OBJ_5;
@@ -233,6 +237,7 @@
 			files = (
 				OBJ_26 /* Calculator.swift in Sources */,
 				OBJ_27 /* FloatingPoint.swift in Sources */,
+				9623C3032234C71500C0C81B /* RealNumber.swift in Sources */,
 				961F8CDC222A00C7001214C4 /* String.swift in Sources */,
 				9697947C22292A5D00ADB7D3 /* Tokens.swift in Sources */,
 				OBJ_28 /* Node.swift in Sources */,
