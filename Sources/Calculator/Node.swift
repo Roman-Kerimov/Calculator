@@ -118,6 +118,18 @@ struct Node {
         return appending(rightOperand: Node.init(rightOperand))
     }
     
+    var hasAllLeftOperands: Bool {
+        return operandCounts.left == operands.left.count
+    }
+    
+    var hasAllRightOperands: Bool {
+        return operandCounts.right == operands.right.count
+    }
+    
+    var hasAllOperands: Bool {
+        return hasAllLeftOperands && hasAllRightOperands
+    }
+    
     let precedence: Precedence
     
     private let getValue: (_ operands: Operands) -> Float80?
@@ -127,6 +139,10 @@ struct Node {
     
     static func === (lhs: Node, rhs: Node) -> Bool {
         return lhs.id == rhs.id
+    }
+    
+    static let `nil` = Node.init(operandCounts: (0, 0), precedence: .number) { (_) -> Float80? in
+        return nil
     }
     
     static let pi = Node.init(.pi)
@@ -200,11 +216,11 @@ struct Node {
 extension Node: Equatable {
     static func == (lhs: Node, rhs: Node) -> Bool {
         
-        if let lhsValue = lhs.value, let rhsValue = rhs.value {
-            return lhsValue == rhsValue
+        if lhs.precedence == .number && rhs.precedence == .number {
+            return lhs.value == lhs.value
         }
         else {
-            return lhs === rhs
+            return lhs === rhs && lhs.operands.left == rhs.operands.left && lhs.operands.right == rhs.operands.right
         }
     }
 }
@@ -212,5 +228,7 @@ extension Node: Equatable {
 extension Node: CustomDebugStringConvertible {
     var debugDescription: String {
         return "Node<" + (tokens.filter {$0.value === self} .keys.sorted().first ?? self.value?.debugDescription ?? "nil") + ">"
+        
+            + (operands.left.isEmpty && operands.right.isEmpty ? "" : "(left: \(operands.left.debugDescription), right: \(operands.right.debugDescription ))")
     }
 }
