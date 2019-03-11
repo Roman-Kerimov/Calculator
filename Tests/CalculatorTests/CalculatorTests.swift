@@ -124,6 +124,7 @@ final class CalculatorTests: XCTestCase {
         testEvaluation(expression: "2−2", result: "0")
         testEvaluation(expression: "2+2\n3+3", result: "6")
         testEvaluation(expression: "()", result: nil)
+        testEvaluation(expression: "log10 1000", result: "3")
     }
     
     func testExpression() {

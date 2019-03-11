@@ -42,10 +42,6 @@ class NodeTests: XCTestCase {
     func testLn() {
         XCTAssertEqual(Node.ln.appending(rightOperand: .e).value, 1)
     }
-    
-    func testLog() {
-        XCTAssertEqual(Node.log.appending(rightOperand: 10).appending(rightOperand: 1000).value, 3)
-    }
 
     func testFactorial() {
         XCTAssertEqual(Node.factorial.appending(leftOperand: 0).value, 1)

@@ -22,7 +22,6 @@ extension NodeTests {
         ("testEvaluationWithEmptyOperands", testEvaluationWithEmptyOperands),
         ("testFactorial", testFactorial),
         ("testLn", testLn),
-        ("testLog", testLog),
         ("testModulusBracket", testModulusBracket),
         ("testSubtract", testSubtract),
     ]
