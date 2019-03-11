@@ -4,10 +4,13 @@ import XCTest
 final class CalculatorTests: XCTestCase {
     
     func testTokenize() {
+        func testTokenization(expression: String, result: [Node]) {
+            Calculator.default.sourceString = expression
+            Calculator.default.tokenize()
+            XCTAssertEqual(Calculator.default.leftStack, result)
+        }
         
-        Calculator.default.sourceString = "expression: sin(0,25*τ) + 2"
-        Calculator.default.tokenize()
-        XCTAssertEqual(Calculator.default.leftStack, [.divide, .sin, .leftRoundBracket, .init(0.25), .multiply, .tau, .rightRoundBracket, .add, .init(2)])
+        testTokenization(expression: "expression: sin(0,25*τ) + 2", result: [.divide, .sin, .leftRoundBracket, .init(0.25), .multiply, .tau, .rightRoundBracket, .add, .init(2)])
     }
     
     func testParse() {
