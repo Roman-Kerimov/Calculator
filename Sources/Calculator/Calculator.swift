@@ -117,7 +117,10 @@ public class Calculator {
             case (_, _, .some(true)):
                 centerStack.append(rightStack.popLast()!)
                 
-            case (.some(true), _, _):
+            case (.some(true), .some(_), _):
+                centerStack.append(leftStack.popLast()!)
+                
+            case (.some(true), .none, _):
                 if leftStack.last!.hasAllLeftOperands {
                     centerStack.append(leftStack.popLast()!)
                 }

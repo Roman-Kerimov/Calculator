@@ -105,6 +105,8 @@ final class CalculatorTests: XCTestCase {
         testParsing(expression: "2+", result: .nil)
         
         testParsing(expression: "2 3+3", result: .nil)
+        
+        testParsing(expression: "−4×4 5", result: .nil)
     }
     
     func testEvaluate() {
