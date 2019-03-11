@@ -81,7 +81,7 @@ public class Calculator {
             if characters.last!.isNewline {
                 break
             }
-            else if characters.last!.isWhitespace {
+            else if characters.last!.isWhitespace || (characters.last == "=" && leftStack.isEmpty) {
                 characters.removeLast()
                 continue
             }
