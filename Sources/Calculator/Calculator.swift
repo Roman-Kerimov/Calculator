@@ -12,10 +12,6 @@ public class Calculator {
     
     public func evaluate(expressionFromString sourceString: String) -> (expression: String, result: String)? {
         
-        leftStack = []
-        rightStack = []
-        centerStack = []
-        
         self.sourceString = sourceString
         tokenize()
         
@@ -54,6 +50,10 @@ public class Calculator {
     var expression: String = .init()
 
     func tokenize() {
+        leftStack = []
+        rightStack = []
+        centerStack = []
+        
         var characters = sourceString
         
         func node<StringType: StringProtocol>(fromToken token: StringType) -> Node? {
