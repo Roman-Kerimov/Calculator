@@ -168,7 +168,7 @@ public class Calculator {
                 centerStack.append(rightStack.popLast()!)
                 
             case (.none, .some(_), .none):
-                return centerStack.popLast()!
+                return centerStack.count == 1 ? centerStack.popLast()! : .nil
                 
             case (.some(false), .none, .some(false)):
                 centerStack.append(rightStack.popLast()!)

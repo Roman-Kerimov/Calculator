@@ -100,6 +100,8 @@ final class CalculatorTests: XCTestCase {
         testParsing(expression: "", result: .nil)
         
         testParsing(expression: "2+", result: .nil)
+        
+        testParsing(expression: "2 3+3", result: .nil)
     }
     
     func testEvaluate() {
