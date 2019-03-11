@@ -11,6 +11,7 @@ final class CalculatorTests: XCTestCase {
         }
         
         testTokenization(expression: "expression: sin(0,25*τ) + 2", result: [.divide, .sin, .leftRoundBracket, .init(0.25), .multiply, .tau, .rightRoundBracket, .add, .init(2)])
+        testTokenization(expression: "2+2\n3+3", result: [.init(3), .add, .init(3)])
     }
     
     func testParse() {
@@ -121,6 +122,7 @@ final class CalculatorTests: XCTestCase {
         testEvaluation(expression: "1/20!", result: "4.110317623E-19")
         testEvaluation(expression: "5−9", result: "-4")
         testEvaluation(expression: "2−2", result: "0")
+        testEvaluation(expression: "2+2\n3+3", result: "6")
     }
     
     func testExpression() {

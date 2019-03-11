@@ -78,7 +78,10 @@ public class Calculator {
         while characters.isEmpty == false {
             let nodeOrNil: Node?
             
-            if characters.last!.isWhitespace {
+            if characters.last!.isNewline {
+                break
+            }
+            else if characters.last!.isWhitespace {
                 characters.removeLast()
                 continue
             }
