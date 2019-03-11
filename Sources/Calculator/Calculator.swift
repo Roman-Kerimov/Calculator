@@ -10,7 +10,7 @@ public class Calculator {
     var rightStack = [Node].init()
     var centerStack = [Node].init()
     
-    public func evaluate(expressionFromString sourceString: String) -> (expression: String, result: String)? {
+    public func evaluate(expressionFromString sourceString: String, shouldReturnASCII: Bool = false) -> (expression: String, result: String)? {
         
         self.sourceString = sourceString
         tokenize()
@@ -27,6 +27,12 @@ public class Calculator {
         let scientificNumberFormatter = NumberFormatter.init()
         scientificNumberFormatter.numberStyle = .scientific
         scientificNumberFormatter.maximumFractionDigits = 10
+        
+        if !shouldReturnASCII {
+            let minusSign = "−"
+            decimalNumberFormatter.minusSign = minusSign
+            scientificNumberFormatter.minusSign = minusSign
+        }
         
         let numberResult = NSNumber.init(value: Double.init(result))
         
