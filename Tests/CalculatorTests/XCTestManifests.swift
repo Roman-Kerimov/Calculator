@@ -19,6 +19,7 @@ extension NodeTests {
     // to regenerate.
     static let __allTests__NodeTests = [
         ("testAdd", testAdd),
+        ("testEvaluationWithEmptyOperands", testEvaluationWithEmptyOperands),
         ("testFactorial", testFactorial),
         ("testLn", testLn),
         ("testLog", testLog),

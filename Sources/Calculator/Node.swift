@@ -57,20 +57,24 @@ struct Node {
     private struct Operands {
         var left: [Node], right: [Node]
         
-        var leftFirst: RealNumber {
-            return self.left.first!.value!
-        }
-        
-        var rightFirst: RealNumber {
-            return self.right.first!.value!
-        }
-        
-        var rightSecond: RealNumber {
-            return self.right[1].value!
+        struct Values {
+            var left: [RealNumber], right: [RealNumber]
+            
+            var leftFirst: RealNumber {
+                return self.left.first!
+            }
+            
+            var rightFirst: RealNumber {
+                return self.right.first!
+            }
+            
+            var rightSecond: RealNumber {
+                return self.right[1]
+            }
         }
     }
     
-    private init(operandCounts: OperandCounts, precedence: Precedence, value: @escaping (Operands) -> RealNumber?) {
+    private init(operandCounts: OperandCounts, precedence: Precedence, value: @escaping (Operands.Values) -> RealNumber?) {
         
         self.operandCounts = operandCounts
         self.precedence = precedence
@@ -92,7 +96,13 @@ struct Node {
             return nil
         }
         
-        return  getValue(operands)
+        let operandValues = Operands.Values.init(left: operands.left.compactMap {$0.value}, right: operands.right.compactMap {$0.value})
+        
+        guard operandValues.left.count == operands.left.count && operandValues.right.count == operands.right.count else {
+            return nil
+        }
+        
+        return  getValue(operandValues)
     }
     
     let operandCounts: OperandCounts
@@ -132,7 +142,7 @@ struct Node {
     
     let precedence: Precedence
     
-    private let getValue: (_ operands: Operands) -> RealNumber?
+    private let getValue: (_ operandValues: Operands.Values) -> RealNumber?
     
     private let id: UInt
     private static var lastID: UInt = 0
@@ -150,19 +160,19 @@ struct Node {
     static let e = Node.init(.e)
     
     static let leftRoundBracket = Node.init(operandCounts: (0, 1), precedence: .bracket) {$0.rightFirst}
-    static let rightRoundBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {$0.left.first! === .leftRoundBracket ? $0.leftFirst : nil}
+    static let rightRoundBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {$0.leftFirst}
     
     static let leftSquareBracket = Node.init(operandCounts: (0, 1), precedence: .bracket) {$0.rightFirst}
-    static let rightSquareBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {$0.left.first! === .leftSquareBracket ? $0.leftFirst : nil}
+    static let rightSquareBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {$0.leftFirst}
     
     static let leftCurlyBracket = Node.init(operandCounts: (0, 1), precedence: .bracket) {$0.rightFirst}
-    static let rightCurlyBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {$0.left.first! === .leftCurlyBracket ? $0.leftFirst : nil}
+    static let rightCurlyBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {$0.leftFirst}
     
     static let leftModulusBracket = Node.init(operandCounts: (0, 1), precedence: .bracket) {$0.rightFirst}
-    static let rightModulusBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {$0.left.first! === .leftModulusBracket ? Swift.abs($0.leftFirst) : nil}
+    static let rightModulusBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {Swift.abs($0.leftFirst)}
     
-    static let add = Node.init(operandCounts: (1, 1), precedence: .addition) {($0.left.first?.value! ?? 0) + $0.rightFirst}
-    static let subtract = Node.init(operandCounts: (1, 1), precedence: .addition) {($0.left.first?.value! ?? 0) - $0.rightFirst}
+    static let add = Node.init(operandCounts: (1, 1), precedence: .addition) {($0.left.first ?? 0) + $0.rightFirst}
+    static let subtract = Node.init(operandCounts: (1, 1), precedence: .addition) {($0.left.first ?? 0) - $0.rightFirst}
     
     static let multiply = Node.init(operandCounts: (1, 1), precedence: .multiplication) {$0.leftFirst * $0.rightFirst}
     static let divide = Node.init(operandCounts: (1, 1), precedence: .multiplication) {$0.leftFirst / $0.rightFirst}

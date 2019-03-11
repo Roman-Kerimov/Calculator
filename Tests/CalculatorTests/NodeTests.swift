@@ -18,6 +18,10 @@ class NodeTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    func testEvaluationWithEmptyOperands() {
+        XCTAssertNil(Node.rightRoundBracket.appending(leftOperand: .leftRoundBracket).value)
+    }
+    
     func testModulusBracket() {
         XCTAssertEqual(Node.rightModulusBracket.appending(leftOperand: Node.leftModulusBracket.appending(rightOperand: -2)).value, 2)
         XCTAssertEqual(Node.rightModulusBracket.appending(leftOperand: Node.leftModulusBracket.appending(rightOperand: 2)).value, 2)
