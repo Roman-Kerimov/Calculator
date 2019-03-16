@@ -26,7 +26,6 @@
 		9623C3032234C71500C0C81B /* RealNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623C3022234C71500C0C81B /* RealNumber.swift */; };
 		9697947C22292A5D00ADB7D3 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9697947B22292A5D00ADB7D3 /* Tokens.swift */; };
 		OBJ_26 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Calculator.swift */; };
-		OBJ_27 /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* FloatingPoint.swift */; };
 		OBJ_28 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Node.swift */; };
 		OBJ_35 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_46 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* CalculatorTests.swift */; };
@@ -59,7 +58,6 @@
 		9697947B22292A5D00ADB7D3 /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
 		"Calculator::Calculator::Product" /* Calculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Calculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Calculator::CalculatorTests::Product" /* CalculatorTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = CalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_10 /* FloatingPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPoint.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		OBJ_14 /* CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTests.swift; sourceTree = "<group>"; };
 		OBJ_15 /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* Calculator.swift */,
-				OBJ_10 /* FloatingPoint.swift */,
 				OBJ_11 /* Node.swift */,
 				9623C3022234C71500C0C81B /* RealNumber.swift */,
 				961F8CDB222A00C7001214C4 /* String.swift */,
@@ -236,7 +233,6 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_26 /* Calculator.swift in Sources */,
-				OBJ_27 /* FloatingPoint.swift in Sources */,
 				9623C3032234C71500C0C81B /* RealNumber.swift in Sources */,
 				961F8CDC222A00C7001214C4 /* String.swift in Sources */,
 				9697947C22292A5D00ADB7D3 /* Tokens.swift in Sources */,
