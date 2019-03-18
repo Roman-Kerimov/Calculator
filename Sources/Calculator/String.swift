@@ -9,7 +9,11 @@ import Foundation
 
 extension String {
     func suffix(while predicate: (Character) throws -> Bool) rethrows -> Substring {
-        let suffixLenght = self.count-1 - (lastIndex { try! !predicate($0) }?.utf16Offset(in: self) ?? -1)
-        return self.suffix(suffixLenght)
+        if let lastNonSuffixIndex = lastIndex(where: { try! !predicate($0) }) {
+            return self[lastNonSuffixIndex...].dropFirst()
+        }
+        else {
+            return self[startIndex...]
+        }
     }
 }

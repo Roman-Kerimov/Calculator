@@ -20,6 +20,8 @@ class StringTests: XCTestCase {
 
     func testSuffixWhile() {
         XCTAssertEqual("2 × sin".suffix {$0.isLetter}, "sin")
+        XCTAssertEqual("𝜋𝜏: .t".suffix {$0.isLetter}, "t")
+        
     }
 
 }
