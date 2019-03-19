@@ -169,7 +169,7 @@ struct Node {
     static let rightCurlyBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {$0.leftFirst}
     
     static let leftModulusBracket = Node.init(operandCounts: (0, 1), precedence: .bracket) {$0.rightFirst}
-    static let rightModulusBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {Swift.abs($0.leftFirst)}
+    static let rightModulusBracket = Node.init(operandCounts: (1, 0), precedence: .bracket) {abs($0.leftFirst)}
     
     static let add = Node.init(operandCounts: (1, 1), precedence: .addition) {($0.left.first ?? 0) + $0.rightFirst}
     static let subtract = Node.init(operandCounts: (1, 1), precedence: .addition) {($0.left.first ?? 0) - $0.rightFirst}
@@ -215,7 +215,7 @@ struct Node {
     static let arcsecant = Node.init(operandCounts: (0, 1), precedence: .function) {1/acos($0.rightFirst)}
     static let arccosecant = Node.init(operandCounts: (0, 1), precedence: .function) {1/asin($0.rightFirst)}
     
-    static let modulus = Node.init(operandCounts: (0, 1), precedence: .function) {Swift.abs($0.rightFirst)}
+    static let modulus = Node.init(operandCounts: (0, 1), precedence: .function) {abs($0.rightFirst)}
     
     static let factorial = Node.init(operandCounts: (1, 0), precedence: .factorial) { (operands) -> RealNumber? in
         
