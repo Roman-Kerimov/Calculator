@@ -126,6 +126,16 @@ final class CalculatorTests: XCTestCase {
         testEvaluation(expression: "2+2\n3+3", result: "6")
         testEvaluation(expression: "()", result: nil)
         testEvaluation(expression: "log10 1000", result: "3")
+        
+        
+        testEvaluation(expression: "sin pi", result: "0")
+        testEvaluation(expression: "sin(100500×pi)", result: "0")
+        testEvaluation(expression: "cos(pi/2)", result: "0")
+        testEvaluation(expression: "cos(3×pi/2)", result: "0")
+        testEvaluation(expression: "tan pi", result: "0")
+        testEvaluation(expression: "tan(2×pi)", result: "0")
+        testEvaluation(expression: "tan(pi/2)", result: "+∞")
+        testEvaluation(expression: "tan(3×pi/2)", result: "+∞")
     }
     
     func testExpression() {

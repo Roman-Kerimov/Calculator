@@ -189,6 +189,18 @@ struct Node {
     static let naturalLogarithm = Node.init(operandCounts: (0, 1), precedence: .function) {log($0.rightFirst)}
     static let commonLogarithm = Node.init(operandCounts: (0, 1), precedence: .function) {log10($0.rightFirst)}
     
+    static func sin(_ value: RealNumber) -> RealNumber {
+        return value.isDivisible(by: .pi) ? 0 : Foundation.sin(value)
+    }
+    
+    static func cos(_ value: RealNumber) -> RealNumber {
+        return (.pi/2+value).isDivisible(by: .pi) ? 0 : Foundation.cos(value)
+    }
+    
+    static func tan(_ value: RealNumber) -> RealNumber {
+        return value.isDivisible(by: .pi) ? 0 : (.pi/2+value).isDivisible(by: .pi) ? .infinity : Foundation.tan(value)
+    }
+    
     static let sine = Node.init(operandCounts: (0, 1), precedence: .function) {sin($0.rightFirst)}
     static let cosine = Node.init(operandCounts: (0, 1), precedence: .function) {cos($0.rightFirst)}
     static let tangent = Node.init(operandCounts: (0, 1), precedence: .function) {tan($0.rightFirst)}
