@@ -180,30 +180,30 @@ struct Node {
     
     static let power = Node.init(operandCounts: (1, 1), precedence: .exponentation) {pow($0.leftFirst, $0.rightFirst)}
     
-    static let sqrt = Node.init(operandCounts: (0, 1), precedence: .function) {Foundation.sqrt($0.rightFirst)}
-    static let cbrt = Node.init(operandCounts: (0, 1), precedence: .function) {Foundation.cbrt($0.rightFirst)}
-    static let frrt = Node.init(operandCounts: (0, 1), precedence: .function) {pow($0.rightFirst, 0.25)}
+    static let squareRoot = Node.init(operandCounts: (0, 1), precedence: .function) {sqrt($0.rightFirst)}
+    static let cubeRoot = Node.init(operandCounts: (0, 1), precedence: .function) {cbrt($0.rightFirst)}
+    static let fourthRoot = Node.init(operandCounts: (0, 1), precedence: .function) {pow($0.rightFirst, 0.25)}
     
-    static let log = Node.init(operandCounts: (0, 2), precedence: .function) {Foundation.log($0.rightSecond)/Foundation.log($0.rightFirst)}
-    static let lb = Node.init(operandCounts: (0, 1), precedence: .function) {log2($0.rightFirst)}
-    static let ln = Node.init(operandCounts: (0, 1), precedence: .function) {Foundation.log($0.rightFirst)}
-    static let lg = Node.init(operandCounts: (0, 1), precedence: .function) {log10($0.rightFirst)}
+    static let logarithm = Node.init(operandCounts: (0, 2), precedence: .function) {log($0.rightSecond)/log($0.rightFirst)}
+    static let binaryLogarithm = Node.init(operandCounts: (0, 1), precedence: .function) {log2($0.rightFirst)}
+    static let naturalLogarithm = Node.init(operandCounts: (0, 1), precedence: .function) {log($0.rightFirst)}
+    static let commonLogarithm = Node.init(operandCounts: (0, 1), precedence: .function) {log10($0.rightFirst)}
     
-    static let sin = Node.init(operandCounts: (0, 1), precedence: .function) {Foundation.sin($0.rightFirst)}
-    static let cos = Node.init(operandCounts: (0, 1), precedence: .function) {Foundation.cos($0.rightFirst)}
-    static let tan = Node.init(operandCounts: (0, 1), precedence: .function) {Foundation.tan($0.rightFirst)}
-    static let cot = Node.init(operandCounts: (0, 1), precedence: .function) {1/Foundation.tan($0.rightFirst)}
-    static let sec = Node.init(operandCounts: (0, 1), precedence: .function) {1/Foundation.cos($0.rightFirst)}
-    static let csc = Node.init(operandCounts: (0, 1), precedence: .function) {1/Foundation.sin($0.rightFirst)}
+    static let sine = Node.init(operandCounts: (0, 1), precedence: .function) {sin($0.rightFirst)}
+    static let cosine = Node.init(operandCounts: (0, 1), precedence: .function) {cos($0.rightFirst)}
+    static let tangent = Node.init(operandCounts: (0, 1), precedence: .function) {tan($0.rightFirst)}
+    static let cotangent = Node.init(operandCounts: (0, 1), precedence: .function) {1/tan($0.rightFirst)}
+    static let secant = Node.init(operandCounts: (0, 1), precedence: .function) {1/cos($0.rightFirst)}
+    static let cosecant = Node.init(operandCounts: (0, 1), precedence: .function) {1/sin($0.rightFirst)}
     
-    static let arcsin = Node.init(operandCounts: (0, 1), precedence: .function) {asin($0.rightFirst)}
-    static let arccos = Node.init(operandCounts: (0, 1), precedence: .function) {acos($0.rightFirst)}
-    static let arctan = Node.init(operandCounts: (0, 1), precedence: .function) {atan($0.rightFirst)}
-    static let arccot = Node.init(operandCounts: (0, 1), precedence: .function) {1/atan($0.rightFirst)}
-    static let arcsec = Node.init(operandCounts: (0, 1), precedence: .function) {1/acos($0.rightFirst)}
-    static let arccsc = Node.init(operandCounts: (0, 1), precedence: .function) {1/asin($0.rightFirst)}
+    static let arcsine = Node.init(operandCounts: (0, 1), precedence: .function) {asin($0.rightFirst)}
+    static let arccosine = Node.init(operandCounts: (0, 1), precedence: .function) {acos($0.rightFirst)}
+    static let arctangent = Node.init(operandCounts: (0, 1), precedence: .function) {atan($0.rightFirst)}
+    static let arccotangent = Node.init(operandCounts: (0, 1), precedence: .function) {1/atan($0.rightFirst)}
+    static let arcsecant = Node.init(operandCounts: (0, 1), precedence: .function) {1/acos($0.rightFirst)}
+    static let arccosecant = Node.init(operandCounts: (0, 1), precedence: .function) {1/asin($0.rightFirst)}
     
-    static let abs = Node.init(operandCounts: (0, 1), precedence: .function) {Swift.abs($0.rightFirst)}
+    static let modulus = Node.init(operandCounts: (0, 1), precedence: .function) {Swift.abs($0.rightFirst)}
     
     static let factorial = Node.init(operandCounts: (1, 0), precedence: .factorial) { (operands) -> RealNumber? in
         

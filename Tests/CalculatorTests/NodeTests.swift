@@ -40,7 +40,7 @@ class NodeTests: XCTestCase {
     }
     
     func testLn() {
-        XCTAssertEqual(Node.ln.appending(rightOperand: .e).value, 1)
+        XCTAssertEqual(Node.naturalLogarithm.appending(rightOperand: .e).value, 1)
     }
 
     func testFactorial() {

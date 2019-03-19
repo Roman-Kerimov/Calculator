@@ -10,7 +10,7 @@ final class CalculatorTests: XCTestCase {
             XCTAssertEqual(Calculator.default.leftStack, result)
         }
         
-        testTokenization(expression: "expression: sin(0,25*τ) + 2", result: [.divide, .sin, .leftRoundBracket, .init(0.25), .multiply, .tau, .rightRoundBracket, .add, .init(2)])
+        testTokenization(expression: "expression: sin(0,25*τ) + 2", result: [.divide, .sine, .leftRoundBracket, .init(0.25), .multiply, .tau, .rightRoundBracket, .add, .init(2)])
         testTokenization(expression: "2+2\n3+3", result: [.init(3), .add, .init(3)])
         testTokenization(expression: "2+2=", result: [.init(2), .add, .init(2)])
     }
@@ -75,18 +75,18 @@ final class CalculatorTests: XCTestCase {
         
         testParsing(expression: "sin π + 2", result:
             Node.add
-                .appending(leftOperand: Node.sin.appending(rightOperand: Node.pi))
+                .appending(leftOperand: Node.sine.appending(rightOperand: Node.pi))
                 .appending(rightOperand: 2)
         )
         
         testParsing(expression: "log10 1000", result:
-            Node.log.appending(rightOperand: 10).appending(rightOperand: 1000)
+            Node.logarithm.appending(rightOperand: 10).appending(rightOperand: 1000)
         )
         
         testParsing(expression: "log10 1000 + 2", result:
             Node.add
                 .appending(leftOperand:
-                    Node.log.appending(rightOperand: 10).appending(rightOperand: 1000)
+                    Node.logarithm.appending(rightOperand: 10).appending(rightOperand: 1000)
                 )
                 .appending(rightOperand: 2)
             

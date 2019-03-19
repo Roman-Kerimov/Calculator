@@ -53,59 +53,59 @@ let tokens: [String: Node] = [
     
     "^": .power,
     
-    "sqrt": .sqrt,
-    "√": .sqrt,
+    "sqrt": .squareRoot,
+    "√": .squareRoot,
     
-    "cbrt": .cbrt,
-    "∛": .cbrt,
-    "؆": .cbrt,
+    "cbrt": .cubeRoot,
+    "∛": .cubeRoot,
+    "؆": .cubeRoot,
     
-    "∜": .frrt,
-    "؇": .frrt,
+    "∜": .fourthRoot,
+    "؇": .fourthRoot,
     
-    "log": .log,
-    "lb": .lb,
-    "ln": .ln,
-    "lg": .lg,
+    "log": .logarithm,
+    "lb": .binaryLogarithm,
+    "ln": .naturalLogarithm,
+    "lg": .commonLogarithm,
     
     
-    "sin": .sin,
+    "sin": .sine,
     
-    "cos": .cos,
+    "cos": .cosine,
     
-    "tan": .tan,
-    "tg": .tan,
+    "tan": .tangent,
+    "tg": .tangent,
     
-    "cot": .cot,
-    "cotan": .cot,
-    "cotg": .cot,
-    "ctg": .cot,
-    "ctn": .cot,
+    "cot": .cotangent,
+    "cotan": .cotangent,
+    "cotg": .cotangent,
+    "ctg": .cotangent,
+    "ctn": .cotangent,
     
-    "sec": .sec,
+    "sec": .secant,
     
-    "csc": .csc,
-    "cosec": .csc,
+    "csc": .cosecant,
+    "cosec": .cosecant,
     
-    "arcsin": .arcsin,
+    "arcsin": .arcsine,
     
-    "arccos": .arccos,
+    "arccos": .arccosine,
     
-    "arctan": .arctan,
-    "arctg": .arctan,
+    "arctan": .arctangent,
+    "arctg": .arctangent,
     
-    "arccot": .arccot,
-    "arccotan": .arccot,
-    "arccotg": .arccot,
-    "arcctg": .arccot,
-    "arcctn": .arccot,
+    "arccot": .arccotangent,
+    "arccotan": .arccotangent,
+    "arccotg": .arccotangent,
+    "arcctg": .arccotangent,
+    "arcctn": .arccotangent,
     
-    "arcsec": .arcsec,
+    "arcsec": .arcsecant,
     
-    "arccsc": .arccsc,
-    "arccosec": .arccsc,
+    "arccsc": .arccosecant,
+    "arccosec": .arccosecant,
     
-    "abs": .abs,
+    "abs": .modulus,
     
     "!": .factorial,
 ]
