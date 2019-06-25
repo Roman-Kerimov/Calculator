@@ -111,31 +111,32 @@ final class CalculatorTests: XCTestCase {
         testParsing(expression: "−4×4 5", result: .nil)
     }
     
+    func XCTAssertEvaulate(expression: String, result: String?, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(Calculator.default.evaluate(expressionFromString: expression)?.result, result?.replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? "."), file: file, line: line)
+    }
+    
     func testEvaluate() {
-        func testEvaluation(expression: String, result: String?) {
-            XCTAssertEqual(Calculator.default.evaluate(expressionFromString: expression)?.result, result?.replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? "."))
-        }
         
-        testEvaluation(expression: "2+2×2", result: "6")
-        testEvaluation(expression: "1/3", result: "0.3333333333")
-        testEvaluation(expression: "100!", result: "9.332621544E157")
-        testEvaluation(expression: "05+6,25", result: "11.25")
-        testEvaluation(expression: "1/20!", result: "4.110317623E−19")
-        testEvaluation(expression: "5−9", result: "−4")
-        testEvaluation(expression: "2−2", result: "0")
-        testEvaluation(expression: "2+2\n3+3", result: "6")
-        testEvaluation(expression: "()", result: nil)
-        testEvaluation(expression: "log10 1000", result: "3")
+        XCTAssertEvaulate(expression: "2+2×2", result: "6")
+        XCTAssertEvaulate(expression: "1/3", result: "0.3333333333")
+        XCTAssertEvaulate(expression: "100!", result: "9.332621544E157")
+        XCTAssertEvaulate(expression: "05+6,25", result: "11.25")
+        XCTAssertEvaulate(expression: "1/20!", result: "4.110317623E−19")
+        XCTAssertEvaulate(expression: "5−9", result: "−4")
+        XCTAssertEvaulate(expression: "2−2", result: "0")
+        XCTAssertEvaulate(expression: "2+2\n3+3", result: "6")
+        XCTAssertEvaulate(expression: "()", result: nil)
+        XCTAssertEvaulate(expression: "log10 1000", result: "3")
         
         
-        testEvaluation(expression: "sin pi", result: "0")
-        testEvaluation(expression: "sin(100500×pi)", result: "0")
-        testEvaluation(expression: "cos(pi/2)", result: "0")
-        testEvaluation(expression: "cos(3×pi/2)", result: "0")
-        testEvaluation(expression: "tan pi", result: "0")
-        testEvaluation(expression: "tan(2×pi)", result: "0")
-        testEvaluation(expression: "tan(pi/2)", result: "+∞")
-        testEvaluation(expression: "tan(3×pi/2)", result: "+∞")
+        XCTAssertEvaulate(expression: "sin pi", result: "0")
+        XCTAssertEvaulate(expression: "sin(100500×pi)", result: "0")
+        XCTAssertEvaulate(expression: "cos(pi/2)", result: "0")
+        XCTAssertEvaulate(expression: "cos(3×pi/2)", result: "0")
+        XCTAssertEvaulate(expression: "tan pi", result: "0")
+        XCTAssertEvaulate(expression: "tan(2×pi)", result: "0")
+        XCTAssertEvaulate(expression: "tan(pi/2)", result: "+∞")
+        XCTAssertEvaulate(expression: "tan(3×pi/2)", result: "+∞")
     }
     
     func testExpression() {
