@@ -26,7 +26,7 @@ public class Calculator {
         
         let scientificNumberFormatter = NumberFormatter.init()
         scientificNumberFormatter.numberStyle = .scientific
-        scientificNumberFormatter.maximumFractionDigits = 10
+        scientificNumberFormatter.maximumFractionDigits = 9
         
         if !shouldReturnASCII {
             let minusSign = "−"
