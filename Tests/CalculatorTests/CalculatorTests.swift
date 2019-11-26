@@ -127,6 +127,7 @@ final class CalculatorTests: XCTestCase {
         XCTAssertEvaulate(expression: "2+2\n3+3", result: "6")
         XCTAssertEvaulate(expression: "()", result: nil)
         XCTAssertEvaulate(expression: "log10 1000", result: "3")
+        XCTAssertEvaulate(expression: "(−243)^0.2", result: "−3")
         
         
         XCTAssertEvaulate(expression: "sin pi", result: "0")
