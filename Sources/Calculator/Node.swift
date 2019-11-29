@@ -178,9 +178,7 @@ struct Node {
     static let divide = Node.init(operandCounts: (1, 1), precedence: .multiplication) {$0.leftFirst / $0.rightFirst}
     static let remainder = Node.init(operandCounts: (1, 1), precedence: .multiplication) {$0.leftFirst.truncatingRemainder(dividingBy: $0.rightFirst)}
     
-    static let power = Node.init(operandCounts: (1, 1), precedence: .exponentation) {
-        RealNumber(signOf: $0.leftFirst, magnitudeOf: pow($0.leftFirst.magnitude, $0.rightFirst))
-    }
+    static let power = Node.init(operandCounts: (1, 1), precedence: .exponentation) {pow($0.leftFirst, $0.rightFirst)}
     
     static let squareRoot = Node.init(operandCounts: (0, 1), precedence: .function) {sqrt($0.rightFirst)}
     static let cubeRoot = Node.init(operandCounts: (0, 1), precedence: .function) {cbrt($0.rightFirst)}
