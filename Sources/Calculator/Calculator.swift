@@ -1,17 +1,19 @@
 import Foundation
 
 public class Calculator {
-    public static let `default` = Calculator.init()
+    public static let `default` = Calculator()
     
     private init() {}
     
-    var sourceString = String.init()
+    var sourceString = String()
     var leftStack = [Node].init()
     var rightStack = [Node].init()
     var centerStack = [Node].init()
     
-    public func evaluate(expressionFromString sourceString: String, shouldReturnASCII: Bool = false) -> (expression: String, result: String)? {
-        
+    public func evaluate(
+        expressionFromString sourceString: String,
+        shouldReturnASCII: Bool = false
+    ) -> (expression: String, result: String)? {
         self.sourceString = sourceString
         tokenize()
         
@@ -19,12 +21,11 @@ public class Calculator {
             return nil
         }
         
-        let decimalNumberFormatter = NumberFormatter.init()
+        let decimalNumberFormatter = NumberFormatter()
         decimalNumberFormatter.numberStyle = .decimal
         decimalNumberFormatter.maximumFractionDigits = 10
         
-        
-        let scientificNumberFormatter = NumberFormatter.init()
+        let scientificNumberFormatter = NumberFormatter()
         scientificNumberFormatter.numberStyle = .scientific
         scientificNumberFormatter.maximumFractionDigits = 9
         
@@ -34,27 +35,25 @@ public class Calculator {
             scientificNumberFormatter.minusSign = minusSign
         }
         
-        let numberResult = NSNumber.init(value: Double.init(result))
+        let numberResult = NSNumber(value: Double(result))
         
         let stringResult: String?
         
-        if  abs(result) == 0 || (1e-10 < abs(result) && abs(result) < 1e15)  {
+        if  abs(result) == 0 || (1e-10 < abs(result) && abs(result) < 1e15) {
             stringResult =  decimalNumberFormatter.string(from: numberResult)
-        }
-        else {
+        } else {
             stringResult = scientificNumberFormatter.string(from: numberResult)
         }
         
         if let result = stringResult {
             return (expression, result)
-        }
-        else {
+        } else {
             return nil
         }
     }
     
     var expression: String = .init()
-
+    
     func tokenize() {
         leftStack = []
         rightStack = []
@@ -63,14 +62,15 @@ public class Calculator {
         var characters = sourceString
         
         func node<StringType: StringProtocol>(fromToken token: StringType) -> Node? {
-            
-            let normalizedToken = token.precomposedStringWithCompatibilityMapping.lowercased().replacingOccurrences(of: ",", with: ".")
+            let normalizedToken = token
+                .precomposedStringWithCompatibilityMapping
+                .lowercased()
+                .replacingOccurrences(of: ",", with: ".")
             
             let node: Node?
-            if let value = RealNumber.init(normalizedToken) {
-                node = Node.init(value)
-            }
-            else {
+            if let value = RealNumber(normalizedToken) {
+                node = Node(value)
+            } else {
                 node = tokens[normalizedToken]
             }
             
@@ -86,25 +86,20 @@ public class Calculator {
             
             if characters.last!.isNewline {
                 break
-            }
-            else if characters.last!.isWhitespace || (characters.last == "=" && leftStack.isEmpty) {
+            } else if characters.last!.isWhitespace || (characters.last == "=" && leftStack.isEmpty) {
                 characters.removeLast()
                 continue
-            }
-            else if characters.last!.isWholeNumber {
+            } else if characters.last!.isWholeNumber {
                 nodeOrNil = node(fromToken: characters.suffix(while: {$0.isWholeNumber || [".", ","].contains($0)}))
-            }
-            else if characters.last!.isLetter {
+            } else if characters.last!.isLetter {
                 nodeOrNil = node(fromToken: characters.suffix(while: {$0.isLetter}))
-            }
-            else {
+            } else {
                 nodeOrNil = node(fromToken: characters.last!.description)
             }
             
             if let node = nodeOrNil {
                 leftStack.append(node)
-            }
-            else {
+            } else {
                 break
             }
         }
@@ -115,11 +110,14 @@ public class Calculator {
         return
     }
     
+    // swiftlint: disable cyclomatic_complexity function_body_length
     func parse() -> Node {
-        
         while true {
-            
-            switch (leftStack.last?.hasAllRightOperands, centerStack.last?.hasAllOperands, rightStack.last?.hasAllLeftOperands) {
+            switch (
+                leftStack.last?.hasAllRightOperands,
+                centerStack.last?.hasAllOperands,
+                rightStack.last?.hasAllLeftOperands
+            ) {
             case (.none, .none, .none):
                 return .nil
                 
@@ -132,19 +130,16 @@ public class Calculator {
             case (.some(true), .none, _):
                 if leftStack.last!.hasAllLeftOperands {
                     centerStack.append(leftStack.popLast()!)
-                }
-                else {
+                } else {
                     rightStack.append(leftStack.popLast()!)
                 }
                 
             case (.some(false), .some(_), .some(false)):
-                
                 func isLeftPrecedence() -> Bool {
                     let leftNodePrecedence = leftStack.last!.precedence
                     let rightNodePrecedence = rightStack.last!.precedence
                     
                     if leftNodePrecedence == rightNodePrecedence {
-                        
                         guard leftNodePrecedence.associativity == rightNodePrecedence.associativity else {
                             fatalError()
                         }
@@ -157,16 +152,14 @@ public class Calculator {
                         case .none:
                             fatalError()
                         }
-                    }
-                    else {
+                    } else {
                         return leftNodePrecedence.rawValue > rightNodePrecedence.rawValue
                     }
                 }
                 
                 if isLeftPrecedence() {
                     leftStack.append(rightOperand: centerStack.popLast()!)
-                }
-                else {
+                } else {
                     rightStack.append(leftOperand: centerStack.popLast()!)
                 }
                 
@@ -190,6 +183,7 @@ public class Calculator {
             }
         }
     }
+    // swiftlint: enable cyclomatic_complexity function_body_length
 }
 
 extension Array where Element == Node {

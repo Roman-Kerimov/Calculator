@@ -25,13 +25,10 @@ let tokens: [String: Node] = [
     "[": .leftSquareBracket,
     "]": .rightSquareBracket,
     
-    
     "{": .leftCurlyBracket,
     "}": .rightCurlyBracket,
     
-    
     "+": .add,
-    
     
     "−": .subtract, // MINUS SIGN
     "-": .subtract, // HYPHEN-MINUS
@@ -67,7 +64,6 @@ let tokens: [String: Node] = [
     "lb": .binaryLogarithm,
     "ln": .naturalLogarithm,
     "lg": .commonLogarithm,
-    
     
     "sin": .sine,
     

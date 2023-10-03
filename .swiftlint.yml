@@ -1,0 +1,26 @@
+disabled_rules:
+    - identifier_name
+    - nesting
+    - trailing_comma
+    - trailing_whitespace
+
+opt_in_rules:
+    - explicit_init
+    - implicit_return
+    - vertical_whitespace_opening_braces
+    - vertical_whitespace_closing_braces
+
+custom_rules:
+    disable_print:
+        included: ".*\\.swift"
+        name: "print usage"
+        regex: "((\\bprint)|(Swift\\.print))\\s*\\("
+        message: "Prefer os_log over print"
+        severity: warning
+        
+    whitespace_indent:
+        included: ".*\\.swift"
+        name: "whitespace_indent"
+        regex: "^\n +"
+        message: "Prefer empty line with whitespace indent"
+        severity: warning

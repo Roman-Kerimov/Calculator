@@ -22,7 +22,7 @@ final class CalculatorTests: XCTestCase {
             XCTAssertEqual(Calculator.default.parse(), result)
         }
         
-        testParsing(expression: "2", result: Node.init(2))
+        testParsing(expression: "2", result: Node(2))
         testParsing(expression: "−2", result: Node.subtract.appending(rightOperand: 2))
         testParsing(expression: "2+2", result: Node.add.appending(leftOperand: 2).appending(rightOperand: 2))
         testParsing(expression: "2+2*2", result:

@@ -8,11 +8,10 @@
 import Foundation
 
 extension String {
-    func suffix(while predicate: (Character) throws -> Bool) rethrows -> Substring {
-        if let lastNonSuffixIndex = lastIndex(where: { try! !predicate($0) }) {
+    func suffix(while predicate: (Character) -> Bool) -> Substring {
+        if let lastNonSuffixIndex = lastIndex(where: { !predicate($0) }) {
             return self[lastNonSuffixIndex...].dropFirst()
-        }
-        else {
+        } else {
             return self[startIndex...]
         }
     }

@@ -11,8 +11,11 @@ typealias RealNumber = Double
 
 extension RealNumber {
     func isDivisible(by value: RealNumber) -> Bool {
-        let decimalNumberFormatter = NumberFormatter.init()
+        let decimalNumberFormatter = NumberFormatter()
         decimalNumberFormatter.numberStyle = .decimal
-        return decimalNumberFormatter.string(from: .init(value: self/value))?.contains(decimalNumberFormatter.decimalSeparator) == false
+        return decimalNumberFormatter
+            .string(from: .init(value: self/value))?
+            .contains(decimalNumberFormatter.decimalSeparator)
+            == false
     }
 }
