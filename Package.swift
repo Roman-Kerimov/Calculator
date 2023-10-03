@@ -26,7 +26,10 @@ let package = Package(
         ),
         .testTarget(
             name: "CalculatorTests",
-            dependencies: ["Calculator"]
+            dependencies: ["Calculator"],
+            plugins: [
+                .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
+            ]
         ),
     ]
 )

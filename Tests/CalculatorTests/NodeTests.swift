@@ -9,11 +9,10 @@ import XCTest
 @testable import Calculator
 
 class NodeTests: XCTestCase {
-
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -23,8 +22,15 @@ class NodeTests: XCTestCase {
     }
     
     func testModulusBracket() {
-        XCTAssertEqual(Node.rightModulusBracket.appending(leftOperand: Node.leftModulusBracket.appending(rightOperand: -2)).value, 2)
-        XCTAssertEqual(Node.rightModulusBracket.appending(leftOperand: Node.leftModulusBracket.appending(rightOperand: 2)).value, 2)
+        XCTAssertEqual(
+            Node.rightModulusBracket.appending(leftOperand: Node.leftModulusBracket.appending(rightOperand: -2)).value,
+            2
+        )
+        
+        XCTAssertEqual(
+            Node.rightModulusBracket.appending(leftOperand: Node.leftModulusBracket.appending(rightOperand: 2)).value,
+            2
+        )
     }
     
     func testAdd() {
@@ -42,7 +48,7 @@ class NodeTests: XCTestCase {
     func testLn() {
         XCTAssertEqual(Node.naturalLogarithm.appending(rightOperand: .e).value, 1)
     }
-
+    
     func testFactorial() {
         XCTAssertEqual(Node.factorial.appending(leftOperand: 0).value, 1)
         XCTAssertEqual(Node.factorial.appending(leftOperand: 1).value, 1)

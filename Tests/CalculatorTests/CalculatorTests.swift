@@ -2,7 +2,6 @@ import XCTest
 @testable import Calculator
 
 final class CalculatorTests: XCTestCase {
-    
     func testTokenize() {
         func testTokenization(expression: String, result: [Node]) {
             Calculator.default.sourceString = expression
@@ -10,11 +9,25 @@ final class CalculatorTests: XCTestCase {
             XCTAssertEqual(Calculator.default.leftStack, result)
         }
         
-        testTokenization(expression: "expression: sin(0,25*τ) + 2", result: [.divide, .sine, .leftRoundBracket, .init(0.25), .multiply, .tau, .rightRoundBracket, .add, .init(2)])
+        testTokenization(
+            expression: "expression: sin(0,25*τ) + 2",
+            result: [
+                .divide,
+                .sine,
+                .leftRoundBracket,
+                .init(0.25),
+                .multiply,
+                .tau,
+                .rightRoundBracket,
+                .add,
+                .init(2)
+            ]
+        )
         testTokenization(expression: "2+2\n3+3", result: [.init(3), .add, .init(3)])
         testTokenization(expression: "2+2=", result: [.init(2), .add, .init(2)])
     }
     
+    // swiftlint: disable function_body_length
     func testParse() {
         func testParsing(expression: String, result: Node) {
             Calculator.default.sourceString = expression
@@ -25,26 +38,31 @@ final class CalculatorTests: XCTestCase {
         testParsing(expression: "2", result: Node(2))
         testParsing(expression: "−2", result: Node.subtract.appending(rightOperand: 2))
         testParsing(expression: "2+2", result: Node.add.appending(leftOperand: 2).appending(rightOperand: 2))
-        testParsing(expression: "2+2*2", result:
-            Node.add
+        testParsing(
+            expression: "2+2*2",
+            result: Node.add
                 .appending(leftOperand: 2)
-                .appending(rightOperand:
-                    Node.multiply
+                .appending(
+                    rightOperand: Node.multiply
                         .appending(leftOperand: 2)
                         .appending(rightOperand: 2)
                 )
         )
         
-        testParsing(expression: "(2)", result: Node.rightRoundBracket.appending(leftOperand: Node.leftRoundBracket.appending(rightOperand: 2)))
+        testParsing(
+            expression: "(2)",
+            result: Node.rightRoundBracket.appending(leftOperand: Node.leftRoundBracket.appending(rightOperand: 2))
+        )
         
-        testParsing(expression: "(2+2)*2", result:
-            Node.multiply
-                .appending(leftOperand:
-                    Node.rightRoundBracket
-                        .appending(leftOperand:
-                            Node.leftRoundBracket
-                                .appending(rightOperand:
-                                    Node.add
+        testParsing(
+            expression: "(2+2)*2",
+            result: Node.multiply
+                .appending(
+                    leftOperand: Node.rightRoundBracket
+                        .appending(
+                            leftOperand: Node.leftRoundBracket
+                                .appending(
+                                    rightOperand: Node.add
                                         .appending(leftOperand: 2)
                                         .appending(rightOperand: 2)
                                 )
@@ -53,51 +71,56 @@ final class CalculatorTests: XCTestCase {
                 .appending(rightOperand: 2)
         )
         
-        testParsing(expression: "2^2^2", result:
-            Node.power
+        testParsing(
+            expression: "2^2^2",
+            result: Node.power
                 .appending(leftOperand: 2)
-                .appending(rightOperand:
-                    Node.power
+                .appending(
+                    rightOperand: Node.power
                         .appending(leftOperand: 2)
                         .appending(rightOperand: 2)
                 )
         )
         
-        testParsing(expression: "2+2−2", result:
-            Node.subtract
-                .appending(leftOperand:
-                    Node.add
+        testParsing(
+            expression: "2+2−2",
+            result: Node.subtract
+                .appending(
+                    leftOperand: Node.add
                         .appending(leftOperand: 2)
                         .appending(rightOperand: 2)
                 )
                 .appending(rightOperand: 2)
         )
         
-        testParsing(expression: "sin π + 2", result:
-            Node.add
+        testParsing(
+            expression: "sin π + 2",
+            result: Node.add
                 .appending(leftOperand: Node.sine.appending(rightOperand: Node.pi))
                 .appending(rightOperand: 2)
         )
         
-        testParsing(expression: "log10 1000", result:
-            Node.logarithm.appending(rightOperand: 10).appending(rightOperand: 1000)
+        testParsing(
+            expression: "log10 1000",
+            result: Node.logarithm.appending(rightOperand: 10).appending(rightOperand: 1000)
         )
         
-        testParsing(expression: "log10 1000 + 2", result:
-            Node.add
-                .appending(leftOperand:
-                    Node.logarithm.appending(rightOperand: 10).appending(rightOperand: 1000)
+        testParsing(
+            expression: "log10 1000 + 2",
+            result: Node.add
+                .appending(
+                    leftOperand: Node.logarithm.appending(rightOperand: 10).appending(rightOperand: 1000)
                 )
                 .appending(rightOperand: 2)
-            
         )
         
-        testParsing(expression: "(−2)", result:
-            Node.rightRoundBracket
-                .appending(leftOperand:
-                    Node.leftRoundBracket
-                        .appending(rightOperand:
-                            Node.subtract.appending(rightOperand: 2)
+        testParsing(
+            expression: "(−2)",
+            result: Node.rightRoundBracket
+                .appending(
+                    leftOperand: Node.leftRoundBracket
+                        .appending(
+                            rightOperand: Node.subtract.appending(rightOperand: 2)
                         )
                 )
         )
@@ -110,13 +133,18 @@ final class CalculatorTests: XCTestCase {
         
         testParsing(expression: "−4×4 5", result: .nil)
     }
+    // swiftlint: enable function_body_length
     
     func XCTAssertEvaulate(expression: String, result: String?, file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(Calculator.default.evaluate(expressionFromString: expression)?.result, result?.replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? "."), file: file, line: line)
+        XCTAssertEqual(
+            Calculator.default.evaluate(expressionFromString: expression)?.result,
+            result?.replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? "."),
+            file: file,
+            line: line
+        )
     }
     
     func testEvaluate() {
-        
         XCTAssertEvaulate(expression: "2+2×2", result: "6")
         XCTAssertEvaulate(expression: "1/3", result: "0.3333333333")
         XCTAssertEvaulate(expression: "100!", result: "9.332621544E157")
@@ -127,7 +155,6 @@ final class CalculatorTests: XCTestCase {
         XCTAssertEvaulate(expression: "2+2\n3+3", result: "6")
         XCTAssertEvaulate(expression: "()", result: nil)
         XCTAssertEvaulate(expression: "log10 1000", result: "3")
-        
         
         XCTAssertEvaulate(expression: "sin pi", result: "0")
         XCTAssertEvaulate(expression: "sin(100500×pi)", result: "0")

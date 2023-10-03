@@ -24,3 +24,10 @@ custom_rules:
         regex: "^\n +"
         message: "Prefer empty line with whitespace indent"
         severity: warning
+        
+    trailing_argument_label:
+        included: ".*\\.swift"
+        name: "Trailing Argument Label"
+        regex: "(?<=\\W)(?<!\\.)\\w+\\b:\n"
+        message: "Move the argument label to the beginning of the next line"
+        severity: warning
